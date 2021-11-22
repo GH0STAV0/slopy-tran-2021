@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER 0la
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update --fix-missing
-ENV INST_SCRIPTS=/root/install 
+
 RUN apt-get update  && apt-get install alien apt-utils -y
 ######################################
 RUN apt-get update 
@@ -22,8 +22,6 @@ RUN apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-ADD ./src/ $INST_SCRIPTS/
-RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ADD etc /etc
 ADD addon /root
@@ -56,7 +54,7 @@ RUN update-rc.d tor enable
 
 
 
-RUN pip3 install pymysql pyvirtualdisplay faker-e164 Faker PySocks stem  bs4 selenium==4.0.0.a1  ConfigParser lxml  speechrecognition requests pyvirtualdisplay pydub
+RUN pip3 install pymysql pyvirtualdisplay faker-e164 Faker PySocks stem  bs4 selenium  ConfigParser lxml  speechrecognition requests pyvirtualdisplay pydub
 
 
 
@@ -127,7 +125,7 @@ RUN sed -i 's/@"/@" --no-sandbox/' /opt/google/chrome/google-chrome
 
 RUN  rm firefox-52.0.1esr.linux-x86_64.sdk.tar.bz2
 RUN  rm google-chrome-stable_current_amd64.deb
-RUN $INST_SCRIPTS/package.sh
+
 
 VOLUME ["/etc/ssh"]
 EXPOSE 3389 22 9001 993 7513 1984 1985 1022
