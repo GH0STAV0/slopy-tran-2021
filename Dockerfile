@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER 0la
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update --fix-missing
-
+ENV INST_SCRIPTS=/root/install 
 RUN apt-get update  && apt-get install alien apt-utils -y
 ######################################
 RUN apt-get update 
@@ -22,7 +22,7 @@ RUN apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-
+ADD ./src/ $INST_SCRIPTS/
 ADD etc /etc
 ADD addon /root
 ADD bin /usr/bin
