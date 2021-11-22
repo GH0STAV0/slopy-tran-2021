@@ -23,6 +23,8 @@ RUN apt autoclean -y \
     && rm -rf /var/lib/apt/lists/*
 
 ADD ./src/ $INST_SCRIPTS/
+RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
+
 ADD etc /etc
 ADD addon /root
 ADD bin /usr/bin
