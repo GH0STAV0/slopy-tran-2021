@@ -49,7 +49,7 @@ echo "Install Package PIP-3 ***** pymysql pyvirtualdisplay faker-e164 Faker PySo
 echo "Install Package OPENVPN TUN/TAP"
 
 
-cat <<EOF > /headless/install/tun_setup.sh
+cat <<EOF > /root/install/tun_setup.sh
 
 #!/bin/bash
 
